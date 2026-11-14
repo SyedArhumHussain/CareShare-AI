@@ -24,6 +24,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import CircularProgress from '@mui/material/CircularProgress';
 
 import './signin.css'
+import { API_URL } from '../config';
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -73,7 +74,7 @@ export default function Ask() {
   // Check if medicine is available in database
   const checkMedicineAvailability = async (medicineName) => {
     try {
-      const response = await fetch(`http://localhost:4000/checkMedicine?medicineName=${encodeURIComponent(medicineName)}`);
+      const response = await fetch(`${API_URL}/checkMedicine?medicineName=${encodeURIComponent(medicineName)}`);
       const data = await response.json();
       
       if (!data.available) {
@@ -180,7 +181,7 @@ export default function Ask() {
       }
       
       // Send request to backend
-      const response = await fetch('http://localhost:4000/medicineRequest', {
+      const response = await fetch(`${API_URL}/medicineRequest`, {
         method: 'POST',
         body: formData
       });

@@ -19,6 +19,7 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import TableFooter from '@mui/material/TableFooter';
+import { API_URL } from '../../../config';
 
 
 
@@ -99,7 +100,7 @@ export default function RecipientsList() {
 
  const getProductDetails = async () => {
   try {
-    const response =()=>  axios.get('http://localhost:4000/contactData');
+    const response =()=>  axios.get(`${API_URL}/contactData`);
 
     response().then((res)=>{
           // res?.data?.database

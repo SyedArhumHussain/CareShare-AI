@@ -29,6 +29,7 @@ import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Swal from 'sweetalert2';
 import PageContainer from '../components/PageContainer';
+import { API_URL } from '../config';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -74,7 +75,7 @@ const Login = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://localhost:4000/signin', {
+      const response = await fetch(`${API_URL}/signin`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

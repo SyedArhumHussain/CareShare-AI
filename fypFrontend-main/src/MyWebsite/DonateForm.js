@@ -45,6 +45,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Navbar from '../components/Navbar';
 import Footer from './Footer';
+import { API_URL } from '../config';
 
 // Styled components
 const HeroSection = styled(Box)(({ theme }) => ({
@@ -289,7 +290,7 @@ const DonateForm = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:4000/donate', {
+      const response = await fetch(`${API_URL}/donate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -13,6 +13,7 @@ import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
 import PeopleIcon from '@mui/icons-material/People';
 import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
 import FeedbackIcon from '@mui/icons-material/Feedback';
+import { API_URL } from '../../config';
 
 const UserFeedback = () => {
   const [donorsCount, setDonorsCount] = useState(0);
@@ -52,7 +53,7 @@ const UserFeedback = () => {
 
   const getRecipientsCount = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/receipient');
+      const response = await axios.get(`${API_URL}/receipient`);
       setRecipientsCount(response?.data?.length || 0);
     } catch (error) {
       console.error(error);
@@ -61,7 +62,7 @@ const UserFeedback = () => {
 
   const getDonorsCount = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/donor');
+      const response = await axios.get(`${API_URL}/donor`);
       setDonorsCount(response?.data?.length || 0);
     } catch (error) {
       console.error(error);
@@ -70,7 +71,7 @@ const UserFeedback = () => {
 
   const getMedicinesCount = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/askDonator');
+      const response = await axios.get(`${API_URL}/askDonator`);
       setMedicinesCount(response?.data?.database?.length || 0);
     } catch (error) {
       console.error(error);
@@ -79,7 +80,7 @@ const UserFeedback = () => {
 
   const getFeedbackCount = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/contactData');
+      const response = await axios.get(`${API_URL}/contactData`);
       setFeedbackCount(response?.data?.database?.length || 0);
     } catch (error) {
       console.error(error);

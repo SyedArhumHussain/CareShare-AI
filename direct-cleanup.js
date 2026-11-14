@@ -4,6 +4,7 @@
  */
 
 const mongoose = require('mongoose');
+require('dotenv').config({ path: require('path').join(__dirname, 'fypBackend-main', '.env') });
 
 async function cleanupDatabase() {
   try {
@@ -12,7 +13,8 @@ async function cleanupDatabase() {
     
     // Connect to database with the connection string
     console.log('🔍 Connecting to MongoDB...');
-    await mongoose.connect('mongodb+srv://ahmedrazaamjad101:i15mBUjLijMGxiN4@cluster0.czyj5cd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
+    if (!process.env.mongo_URL) throw new Error('mongo_URL is not set in fypBackend-main/.env');
+    await mongoose.connect(process.env.mongo_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true
     });

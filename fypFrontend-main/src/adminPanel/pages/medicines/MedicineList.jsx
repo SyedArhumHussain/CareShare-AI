@@ -33,6 +33,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
 import SearchIcon from '@mui/icons-material/Search';
 import FilterListIcon from '@mui/icons-material/FilterList';
+import { API_URL } from '../../../config';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -132,7 +133,7 @@ export default function MedicineList() {
   const getProductDetails = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:4000/askDonator');
+      const response = await axios.get(`${API_URL}/askDonator`);
       if (response?.data?.database) {
         const data = response.data.database;
         setRows(data);
@@ -186,7 +187,7 @@ export default function MedicineList() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:4000/askDonator/${id}`);
+      await axios.delete(`${API_URL}/askDonator/${id}`);
       Swal.fire({
         title: "Success",
         text: "Medicine deleted successfully!",
@@ -208,7 +209,7 @@ export default function MedicineList() {
   const handleUpdateStatus = async (id, newStatus) => {
     try {
       console.log(`Attempting to update medicine status to ${newStatus} for ID: ${id}`);
-      const response = await axios.put(`http://localhost:4000/askDonator/${id}`, { 
+      const response = await axios.put(`${API_URL}/askDonator/${id}`, { 
         status: newStatus
       });
       
@@ -842,7 +843,7 @@ export default function MedicineList() {
                           console.error("Image failed to load:", e);
                           // Fallback to direct HTTP URL if the URL might be relative
                           if (!open1.medicineImg.startsWith('http')) {
-                            e.target.src = `http://localhost:4000${open1.medicineImg}`;
+                            e.target.src = `${API_URL}${open1.medicineImg}`;
                           }
                         }}
                       />

@@ -43,6 +43,7 @@ import axios from 'axios';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { styled } from '@mui/material/styles';
+import { API_URL } from '../config';
 
 // Custom styled hero section
 const HeroSection = styled(Box)(({ theme }) => ({
@@ -288,7 +289,7 @@ const MedicineCards = () => {
     async function fetchMedicines() {
       setLoading(true);
       try {
-        const response = await axios.get('http://localhost:4000/askDonator');
+        const response = await axios.get(`${API_URL}/askDonator`);
         
         if (response.data && response.data.database) {
           setCards(response.data.database);

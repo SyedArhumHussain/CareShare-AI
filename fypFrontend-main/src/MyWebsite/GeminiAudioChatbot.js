@@ -29,6 +29,7 @@ import {
 } from '@mui/icons-material';
 import { useTheme } from '@mui/material/styles';
 import './chatbot.css';
+import { API_URL } from '../config';
 
 // Note: In production, use environment variables for API keys
 const GEMINI_API_KEY = process.env.REACT_APP_GEMINI_API_KEY;
@@ -220,7 +221,7 @@ const GeminiAudioChatbot = () => {
 
     try {
       // Send to enhanced backend for processing
-      const response = await fetch('http://localhost:4000/gemini-text', {
+      const response = await fetch(`${API_URL}/gemini-text`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

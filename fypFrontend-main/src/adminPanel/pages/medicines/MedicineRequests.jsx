@@ -35,6 +35,7 @@ import LinearProgress from '@mui/material/LinearProgress';
 import CircularProgress from '@mui/material/CircularProgress';
 import Swal from 'sweetalert2';
 import { useState } from 'react';
+import { API_URL } from '../../../config';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -122,7 +123,7 @@ export default function MedicineRequests() {
     setLoading(true);
     try {
       console.log('Fetching medicine requests...');
-      const response = await axios.get('http://localhost:4000/medicineRequests');
+      const response = await axios.get(`${API_URL}/medicineRequests`);
       console.log('Medicine requests response:', response);
       
       if (response.data) {
@@ -176,8 +177,8 @@ export default function MedicineRequests() {
     setActionLoading(true);
     console.log(`Attempting to approve request with ID: ${id}`);
     try {
-      console.log(`Sending POST request to: http://localhost:4000/approveMedicineRequest/${id}`);
-      const response = await axios.post(`http://localhost:4000/approveMedicineRequest/${id}`);
+      console.log(`Sending POST request to: ${API_URL}/approveMedicineRequest/${id}`);
+      const response = await axios.post(`${API_URL}/approveMedicineRequest/${id}`);
       console.log('Approval response:', response.data);
       
       if (response.data.success) {
@@ -235,8 +236,8 @@ export default function MedicineRequests() {
     setActionLoading(true);
     console.log(`Attempting to reject request with ID: ${id}`);
     try {
-      console.log(`Sending POST request to: http://localhost:4000/rejectMedicineRequest/${id}`);
-      const response = await axios.post(`http://localhost:4000/rejectMedicineRequest/${id}`);
+      console.log(`Sending POST request to: ${API_URL}/rejectMedicineRequest/${id}`);
+      const response = await axios.post(`${API_URL}/rejectMedicineRequest/${id}`);
       console.log('Rejection response:', response.data);
       
       if (response.data.success) {
@@ -293,7 +294,7 @@ export default function MedicineRequests() {
   const sendEmail = async (id) => {
     setActionLoading(true);
     try {
-      const response = await axios.post(`http://localhost:4000/sendMedicineEmail/${id}`);
+      const response = await axios.post(`${API_URL}/sendMedicineEmail/${id}`);
       
       if (response.data.success) {
         // Add this request ID to the set of emails sent
@@ -396,7 +397,7 @@ export default function MedicineRequests() {
     try {
       // First, check if the OCR service is running
       try {
-        await axios.get('http://localhost:4000/testOCR');
+        await axios.get(`${API_URL}/testOCR`);
         console.log('OCR service is running');
       } catch (serviceError) {
         console.error('OCR service test failed:', serviceError);
@@ -417,7 +418,7 @@ export default function MedicineRequests() {
       }
       
       // Send image URL to backend for OCR processing
-      const response = await axios.post('http://localhost:4000/processOCR', {
+      const response = await axios.post(`${API_URL}/processOCR`, {
         imageUrl: imageUrl
       });
       
@@ -705,7 +706,7 @@ export default function MedicineRequests() {
                         console.error("Image failed to load:", e);
                         // Fallback to direct HTTP URL if the URL might be relative
                         if (!selectedRequest.prescriptionUrl.startsWith('http')) {
-                          e.target.src = `http://localhost:4000${selectedRequest.prescriptionUrl}`;
+                          e.target.src = `${API_URL}${selectedRequest.prescriptionUrl}`;
                         }
                       }}
                     />

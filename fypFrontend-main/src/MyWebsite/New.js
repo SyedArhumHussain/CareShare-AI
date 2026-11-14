@@ -4,6 +4,7 @@ import Footer from './Footer'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Swal from "sweetalert2";
+import { API_URL } from '../config';
 const New = () => {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
@@ -12,7 +13,7 @@ const New = () => {
 
   const handleLogin = async () => {
     console.warn("name,email,message", name, email, message)
-    let result = await fetch("http://localhost:4000/contact",{
+    let result = await fetch(`${API_URL}/contact`,{
         method: 'post',
         body: JSON.stringify({name, email, message}),
         headers: {

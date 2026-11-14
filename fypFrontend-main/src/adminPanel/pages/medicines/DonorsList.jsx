@@ -23,6 +23,7 @@ import { Avatar, Chip } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import PersonIcon from '@mui/icons-material/Person';
 import { motion } from 'framer-motion';
+import { API_URL } from '../../../config';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -128,7 +129,7 @@ export default function DonorsList() {
 
  const getProductDetails = async () => {
   try {
-    const response =()=>  axios.get('http://localhost:4000/donor');
+    const response =()=>  axios.get(`${API_URL}/donor`);
 
     response().then((res)=>{
           // res?.data?.database

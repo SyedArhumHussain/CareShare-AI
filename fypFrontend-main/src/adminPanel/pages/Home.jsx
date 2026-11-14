@@ -25,6 +25,7 @@ import { Link } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import DashboardLayout from '../components/DashboardLayout';
+import { API_URL } from '../../config';
 
 const Home = () => {
     const [rows, setRows] = useState(0);
@@ -65,7 +66,7 @@ const Home = () => {
     
     const getProductDetails = async () => {
         try {
-            const response = await axios.get('http://localhost:4000/receipient');
+            const response = await axios.get(`${API_URL}/receipient`);
             setRows(response?.data?.length || 0);
         } catch (error) {
             console.error(error);
@@ -74,7 +75,7 @@ const Home = () => {
     
     const getProductDetailsDonor = async () => {
         try {
-            const response = await axios.get('http://localhost:4000/donor');
+            const response = await axios.get(`${API_URL}/donor`);
             setRows1(response?.data?.length || 0);
         } catch (error) {
             console.error(error);
@@ -83,7 +84,7 @@ const Home = () => {
     
     const getMedicine = async () => {
         try {
-            const response = await axios.get('http://localhost:4000/askDonator');
+            const response = await axios.get(`${API_URL}/askDonator`);
             setRows2(response?.data?.database?.length || 0);
         } catch (error) {
             console.error(error);

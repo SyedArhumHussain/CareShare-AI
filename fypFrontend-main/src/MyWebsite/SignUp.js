@@ -42,6 +42,7 @@ import { motion } from 'framer-motion';
 import Swal from 'sweetalert2';
 import Navbar from '../components/Navbar';
 import Footer from './Footer';
+import { API_URL } from '../config';
 
 const SignUp = () => {
   const [activeStep, setActiveStep] = useState(0);
@@ -203,7 +204,7 @@ const SignUp = () => {
     setIsLoading(true);
     
     try {
-      const response = await fetch('http://localhost:4000/signup', {
+      const response = await fetch(`${API_URL}/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

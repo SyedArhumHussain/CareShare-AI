@@ -47,6 +47,7 @@ import {
 } from '@mui/icons-material';
 import Swal from "sweetalert2";
 import axios from 'axios';
+import { API_URL } from '../config';
 
 // Styled components
 const HeroSection = styled(Box)(({ theme }) => ({
@@ -211,7 +212,7 @@ export default function MedicineRequestForm() {
 
   const fetchAvailableMedicines = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/askDonator');
+      const response = await axios.get(`${API_URL}/askDonator`);
       if (response.data && response.data.database) {
         // Get current date for expiry comparison
         const currentDate = new Date();
@@ -418,7 +419,7 @@ export default function MedicineRequestForm() {
       });
       
       // Send request to backend
-      const response = await axios.post('http://localhost:4000/medicineRequest', requestFormData, {
+      const response = await axios.post(`${API_URL}/medicineRequest`, requestFormData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
