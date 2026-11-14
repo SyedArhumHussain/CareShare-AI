@@ -1,4 +1,8 @@
 require('dotenv').config();
+// Hosting panels (e.g. Hostinger) only allow UPPERCASE env var names.
+// Accept MONGO_URL / JWT_SECRET as aliases for the lowercase names the code uses.
+process.env.mongo_URL = process.env.mongo_URL || process.env.MONGO_URL;
+process.env.jwt_secret = process.env.jwt_secret || process.env.JWT_SECRET;
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 4000;
